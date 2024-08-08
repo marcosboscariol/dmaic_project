@@ -166,12 +166,51 @@ with st.expander("__Project Charter__"):
 
     st.write("#### Indicadores do Projeto")
 
-    radio = st.radio("Qual a sua cor favorita?", options=[
-        "Vermelho", "Azul", "Verde"])
-    responder = st.button("Responder")
-    if responder:
-        if radio:
-            st.write(f"A sua cor favorita é {radio}")
+    if 'values' not in st.session_state:
+        st.session_state['values'] = []
 
-    select = st.selectbox("Selecione uma cor:", ("Vermelho", "Verde", "Azul"))
-    st.write(f"A cor selecionada é {select}")
+    # Input de texto para adicionar valores
+    new_value = st.text_input("Adicione um valor:")
+
+    # Botão para adicionar o valor à lista
+    if st.button("Adicionar Valor"):
+        if new_value:
+            st.session_state['values'].append(new_value)
+            st.success(f"Valor '{new_value}' adicionado!")
+        else:
+            st.warning("Por favor, insira um valor antes de adicionar.")
+
+    # Exibe a lista de valores adicionados
+    st.write("Indicadores cadastrados:")
+    if st.session_state['values']:
+        for idx, value in enumerate(st.session_state['values']):
+            st.write(f"__{value}__")
+    else:
+        st.write("Nenhum valor adicionado ainda.")
+
+with st.expander("__Mapa SIPOC__"):
+    st.write(
+        "O SIPOC é o mapeamento macro do processo, que garante que a equipe se ambiente ao trabalho que envolve o resultado a melhorar. É importante, por exemplo, para quando os belts do projeto não são da área de escopo.")
+
+    col1_sipoc, col2_sipoc = st.columns(2)
+
+    with col1_sipoc:
+        st.text_input("__Início__")
+
+    with col2_sipoc:
+        st.text_input("__Fim__")
+
+    tabela_sipoc = {
+        "Fornecedores": [" ", " ", " ", " ", " ", " ",],
+        "Entradas": [" ", " ", " ", " ", " ", " ",],
+        "Processos": [" ", " ", " ", " ", " ", " ",],
+        "Saídas": [" ", " ", " ", " ", " ", " ",],
+        "Clientes": [" ", " ", " ", " ", " ", " "]
+    }
+
+    df_tabela_sipoc = pd.DataFrame(tabela_sipoc)
+    tabela_editada_sipoc = st.data_editor(
+        df_tabela_sipoc,
+        hide_index=True,
+        width=1370
+    )
