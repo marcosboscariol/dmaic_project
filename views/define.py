@@ -6,8 +6,6 @@ st.set_page_config(layout="wide")
 
 st.title("Define")
 
-st.write("## Análise de Viabilidade")
-
 # Análise de Viabilidade
 with st.expander("__Análise de Viabilidade__"):
 

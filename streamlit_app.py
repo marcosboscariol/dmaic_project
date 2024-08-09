@@ -33,10 +33,17 @@ control_page = st.Page(
     icon="📊"
 )
 
+bi_page = st.Page(
+    page="views/bi.py",
+    title="BI",
+    icon="📈"
+)
+
 pg = st.navigation(
     {
-        "Main": [main_page],
-        "DMAIC": [define_page, measure_page, analyze_page, improve_page, control_page]
+        "Página Inicial": [main_page],
+        "DMAIC": [define_page, measure_page, analyze_page, improve_page, control_page],
+        "BI": [bi_page]
     }
 )
 
