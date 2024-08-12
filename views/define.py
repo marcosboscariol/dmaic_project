@@ -391,3 +391,10 @@ with st.expander("__Mapa Mental__"):
 
     if imagem_mapa_mental:
         st.image(imagem_mapa_mental)
+"""
+MNapemaneto de Processos
+
+Tabela SUPOC posicia 1,1 -> Imprima na tela um lembrete
+
+
+"""
